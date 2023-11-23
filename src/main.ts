@@ -1,6 +1,7 @@
-import { run_test } from './test_newman/index.newman';
+import runTest from './test_newman/index.newman';
 import Connections from './Infraestrucure/server/main.connection';
 import ratherLabsServer from './Infraestrucure/server/ratherlabs.app.server';
+//import monitorHardware from './common/statics/hardware.statics';
 
 
 
@@ -14,5 +15,7 @@ connection.init();
  *  You must see console test and you can see html report on test_newman/reports.html
  *  or go to http://localhost:<port>/api/test_view
  */
-//run_test;
-
+// Llamar a la función runTest
+runTest().catch((error) => {
+    console.error('Error:', error);
+});

@@ -1,3 +1,4 @@
+import StatusServerConfig from '../../common/configs/status.config';
 import { MainConnectionInterface } from './interfaces/connectiosn.interface';
 
 class Connections {
@@ -7,9 +8,11 @@ class Connections {
         this.toConnect = connections;
     }
 
-    init(): void {
+    async init(): Promise<void> {
+        const health = StatusServerConfig.getInstance();
+        health.setStatus('Starting');
         for (const conn of this.toConnect) {
-            conn.main_start();
+            await conn.main_start();
         }
     }
 }

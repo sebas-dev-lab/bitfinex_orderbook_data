@@ -25,4 +25,4 @@ export default ratherLabsServer;
 
 
 // ----- bulkdata ----- //
-highDemandCryptoCurrenciesFn().then(()=> console.info('High demand Crypto OK')).catch((e) =>  console.error(e));
+highDemandCryptoCurrenciesFn().then(()=> console.info('Connection with some cryptocurrencies established correctly')).catch((e) =>  console.error(e));

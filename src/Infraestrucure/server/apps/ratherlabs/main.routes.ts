@@ -13,8 +13,6 @@ export class RatherLabsHttpRoutes implements HttpRoutesInterface {
     }
 
     index(): Router {
-        console.log('entro');
-
         // =========== Modules ========= //
         this.router.use(modulesRoutes()); // Asegúrate de que modulesRoutes() devuelve un Router
 

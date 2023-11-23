@@ -32,7 +32,7 @@ export default class OrderBookService {
                 channel: 'book',
                 pair: `${this.pair}`,
                 prec: 'P0',
-                freq: 'F1',
+                freq: 'F0',
                 length: '25'
             };
 
@@ -259,8 +259,6 @@ export default class OrderBookService {
     error: boolean
   }> {
         const error = await this.redisClient.get(`orderbook:${this.pair}:error`);
-
-        console.log(error);
         if (!error) {
             const orderBookKeys = await this.redisClient.keys(`orderbook:${this.pair}`);
             let remainingAmount = amount;

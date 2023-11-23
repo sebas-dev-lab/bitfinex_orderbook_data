@@ -5,6 +5,8 @@ import * as WebSocket from 'ws';
 import { MainConnectionInterface } from '../interfaces/connectiosn.interface';
 import Logger from '../../../common/configs/winston.logs';
 import cleanConsole from '../helpers/cleanConsole.helpers';
+import sleepTimeOut from '../../../common/statics/sleepTimeOut.statics';
+import StatusServerConfig from '../../../common/configs/status.config';
 
 export abstract class MainConnectionAbstract implements MainConnectionInterface {
     conn_http: HttpConnectionInterface | undefined;
@@ -33,9 +35,10 @@ export abstract class MainConnectionAbstract implements MainConnectionInterface 
         }
     }
 
-    main_start(): void {
-        // ----- clean console --- //
+    async main_start(): Promise<void> {
+    // ----- clean console --- //
         cleanConsole();
+        const health = StatusServerConfig.getInstance();
 
         // ---- start server ---- //
         if (this.combine && this.conn_http && this.conn_ws) {
@@ -54,6 +57,7 @@ export abstract class MainConnectionAbstract implements MainConnectionInterface 
             Logger.info('WS connection.');
             this.conn_ws.start(this._port);
         } else {
+            health.setStatus('Error');
             throw new Error('Start Server configuration Error.');
         }
     }

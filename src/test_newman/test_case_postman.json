@@ -1,19 +1,30 @@
 {
 	"info": {
-		"_postman_id": "09e4b9fa-2389-467f-81f6-368efb6280f3",
-		"name": "RatherLabsHttp Pre ws",
+		"_postman_id": "b6fd6dfa-dc41-4551-bbe3-506786e15e3d",
+		"name": "ratherlabs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12802855"
+		"_exporter_id": "12802855",
+		"_collection_link": "https://red-crater-824723.postman.co/workspace/My-Apps~c4cf10f6-b3cc-46db-a38f-bf2a0d983302/collection/12802855-b6fd6dfa-dc41-4551-bbe3-506786e15e3d?action=share&source=collection_link&creator=12802855"
 	},
 	"item": [
 		{
-			"name": "/api/auth/register",
+			"name": "health/check",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 201\"] = responseCode.code === 201;\r",
+							"// Check if the status code is 200 (OK)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check if the response body contains the expected \"message\" property with the value \"Ok\"\r",
+							"pm.test(\"Response has correct message\", function () {\r",
+							"    pm.response.to.have.jsonBody('message', 'Ok');\r",
+							"});\r",
+							"\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript"
@@ -21,162 +32,171 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"test2\",\r\n    \"password\": \"test123*\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrlLocal}}/auth/register",
-					"host": [
-						"{{baseUrlLocal}}"
-					],
-					"path": [
-						"auth",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/auth/signin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
-							"var data = JSON.parse(responseBody);\r",
-							"pm.environment.set('token', data.data.token);\r",
-							"pm.environment.set('id_event', data.data.id_event);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"test2\",\r\n    \"password\": \"test123*\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrlLocal}}/auth/signin",
-					"host": [
-						"{{baseUrlLocal}}"
-					],
-					"path": [
-						"auth",
-						"signin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/market/trade",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"amount\": 6000,\r\n    \"symbol\": \"ADAUSD\",\r\n    \"operation\": \"sell\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrlLocal}}/market/trade",
-					"host": [
-						"{{baseUrlLocal}}"
-					],
-					"path": [
-						"market",
-						"trade"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/test_view",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token}}",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrlLocal}}/test_view",
+					"raw": "http://localhost:4000/api/health/check",
+					"protocol": "http",
 					"host": [
-						"{{baseUrlLocal}}"
+						"localhost"
 					],
+					"port": "4000",
 					"path": [
-						"test_view"
+						"api",
+						"health",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/orderbook/tips/:pair",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if the status code is 200 (OK)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Check if the response body contains the expected \"message\" property with the value \"Ok\"\r",
+							"pm.test(\"Response has correct message\", function () {\r",
+							"    pm.response.to.have.jsonBody('message', 'Ok');\r",
+							"});\r",
+							"\r",
+							"var data = JSON.parse(responseBody);\r",
+							"\r",
+							"// Check if the bid price is a number\r",
+							"pm.test(\"Bid price is a number\", function () {\r",
+							"    pm.expect(pm.response.json().data.bid.price).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"// Check if the ask price is a number\r",
+							"pm.test(\"Ask price is a number\", function () {\r",
+							"    pm.expect(pm.response.json().data.ask.price).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"// Check if the error property is false\r",
+							"pm.test(\"Error is false\", function () {\r",
+							"    pm.response.to.have.jsonBody('data.error', false);\r",
+							"});\r",
+							"\r",
+							"// Check if the message property is \"Connection Ok\"\r",
+							"pm.test(\"Message is 'Connection Ok'\", function () {\r",
+							"    pm.response.to.have.jsonBody('data.message', 'Connection Ok');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api/orderbook/tips/:pair",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"orderbook",
+						"tips",
+						":pair"
+					],
+					"variable": [
+						{
+							"key": "pair",
+							"value": "matic"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/execution/effectivePrice/:pair Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if the status code is 200 (OK)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Check if the \"message\" property is \"Ok\"\r",
+							"pm.test(\"Message is 'Ok'\", function () {\r",
+							"    pm.response.to.have.jsonBody('message', 'Ok');\r",
+							"});\r",
+							"\r",
+							"// Check if the \"amount\" property is a number\r",
+							"pm.test(\"Amount is a number\", function () {\r",
+							"    pm.expect(pm.response.json().data.amount).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"// Check if the \"effectivePrice\" property is a number\r",
+							"pm.test(\"Effective Price is a number\", function () {\r",
+							"    pm.expect(pm.response.json().data.effectivePrice).to.be.a('number');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Check if the \"operation\" property is \"buy\"\r",
+							"pm.test(\"Operation is 'buy'\", function () {\r",
+							"    pm.expect(pm.response.json().data.operation).to.equal('buy');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Check if the \"error\" property is false\r",
+							"pm.test(\"Error is false\", function () {\r",
+							"    pm.expect(pm.response.json().data.error).to.be.false;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"operation\": \"buy\",\r\n    \"amount\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/execution/effectivePrice/:pair",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"execution",
+						"effectivePrice",
+						":pair"
+					],
+					"variable": [
+						{
+							"key": "pair",
+							"value": "BTCUSD"
+						}
 					]
 				}
 			},

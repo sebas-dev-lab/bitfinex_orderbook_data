@@ -8,5 +8,5 @@ export interface MainConnectionInterface {
   _port: number
   ws_options?: any | undefined
   http_options?: any | undefined
-  main_start(): void
+  main_start(): Promise<void>
 }

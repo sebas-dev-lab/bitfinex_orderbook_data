@@ -10,9 +10,10 @@ export default class ExecutionModuleController {
     public async execOrder(req: Request, res: Response): Promise<Response> {
         try {
             const body = req.body;
-            const params = req.params.pair;
+            const params = req.params?.pair ? req.params.pair : null;
+            if (!params) throw new Error('Invalid Params');
             const data = await this._executionService.getEffectivePriceService(
-                params,
+                params.toUpperCase(),
                 body.operation,
                 body.amount
             );
