@@ -64,7 +64,18 @@ Permite obtener los mejores precios bid-ask del orderbook para un par de criptom
 - **Calcular Precio Efectivo de Operación**
 
 POST http://localhost:4000/api/execution/effectivePrice/:pair
-Permite calcular el precio efectivo de una operación de compra o venta para un par de criptomonedas específico. Ejemplo de respuesta:
+Permite calcular el precio efectivo de una operación de compra o venta para un par de criptomonedas específico. 
+Body
+```
+{
+    "operation": "buy | sell",
+    "amount": float
+}
+
+```
+
+Ejemplo de respuesta:
+
 
 ```
 {
