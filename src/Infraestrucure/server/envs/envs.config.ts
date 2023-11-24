@@ -4,7 +4,6 @@ import * as path from 'path';
 const setEnvs = (): string => {
     let dir = null;
     switch (process.env.SERVER_CONNECTION) {
-    //....
     case 'LOCAL':
         dir = path.join(__dirname, '.env.local');
         break;

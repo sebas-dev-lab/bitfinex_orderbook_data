@@ -35,10 +35,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://rl_app:4000/api/health/check",
+					"raw": "http://localhost:4000/api/health/check",
 					"protocol": "http",
 					"host": [
-						"rl_app"
+						"localhost"
 					],
 					"port": "4000",
 					"path": [
@@ -99,10 +99,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://rl_app:4000/api/orderbook/tips/:pair",
+					"raw": "http://localhost:4000/api/orderbook/tips/:pair",
 					"protocol": "http",
 					"host": [
-						"rl_app"
+						"localhost"
 					],
 					"port": "4000",
 					"path": [
@@ -180,10 +180,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://rl_app:4000/api/execution/effectivePrice/:pair",
+					"raw": "http://localhost:4000/api/execution/effectivePrice/:pair",
 					"protocol": "http",
 					"host": [
-						"rl_app"
+						"localhost"
 					],
 					"port": "4000",
 					"path": [

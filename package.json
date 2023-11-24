@@ -7,7 +7,7 @@
     "build": "npx tsc",
     "start:local": "env SERVER_CONNECTION=LOCAL ts-node-dev --respawn --transpile-only --ignore-watch node_modules --no-notify src/main.ts",
     "lint": "npx eslint --quiet --fix",
-    "start:dev": "env SERVER_CONNECTION=LOCAL ts-node-dev --poll --respawn --transpile-only --no-notify src/main.ts"
+    "start:dev": "env SERVER_CONNECTION=DEV ts-node-dev --poll --respawn --transpile-only --no-notify src/main.ts"
   },
   "commitlint": {
     "extends": "@commitlint/config-conventional"

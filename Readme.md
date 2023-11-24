@@ -119,14 +119,31 @@ Desubscribirse a un par:
 
 1) Asegúrese de tener Node.js instalado.
 
-2) Modifique los entornos según sea necesario.
+2) Tener Redis corriendo localmente
 
-3) Ejecute los siguientes comandos en la raíz del proyecto:
+   - Si no tiene localmente Redis puede correrlo, dependiendo de la ejecución, utilizando docker-compose-redis.yml o bien correr app + Redis con docker-compose.yml
+
+   - Para el punto aterior tener instalado Docker y Docker Compose
+
+3) Modifique los entornos según sea necesario. (.env | .env.local)
+
+4) Si se ejecuta la Aplicación desde la terminal entonces, ejecute los siguientes comandos en la raíz del proyecto:
 
     ```
         npm install
-        npm run start:dev
+        opcional: docker-compose -f docker-compose-redis.yml up -d
+        npm run start:local => modificar .env.local
     ```
+5) Si se ejecuta desde docker-compose.yml App + Redis
+   ```
+         docker-compose up -d
+   ```
+
+6) Una vez inicializado, esperar 10 segundos
+
+7) Pruebe la conexión con el endpoint health check, debería ser message: "Ok"
+
+8) Compruebe el reporte de testing ingresando por el navegador http://localhost:4000/api/test_view
 
 ### Nota Final
 

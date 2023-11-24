@@ -91,7 +91,10 @@ export class WsConnectionAbstract implements WsConnectionInterface {
     }
 
     private async flushAll(): Promise<void> {
-        const redisClient = new Redis();
+        const redisClient = new Redis({
+            port: redisEnvs.redis_port,
+            host: redisEnvs.redis_host,
+        });
 
         try {
             // Ejecutar el comando FLUSHALL para eliminar todos los datos

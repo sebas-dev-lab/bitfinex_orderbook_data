@@ -11,7 +11,7 @@ export default async function runTest() {
 
     // Test Configurations
     const newmanOptions = {
-        collection: require('./test_case_postman.json'),
+        collection: require(process.env.SERVER_CONNECTION === 'DEV' ? './test_case_postman.json' : './test_case_postman_local.json'),
         reporters: ['cli', 'htmlextra'],
         reporter: {
             htmlextra: {
