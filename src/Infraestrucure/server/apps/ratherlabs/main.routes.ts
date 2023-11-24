@@ -14,7 +14,7 @@ export class RatherLabsHttpRoutes implements HttpRoutesInterface {
 
     index(): Router {
         // =========== Modules ========= //
-        this.router.use(modulesRoutes()); // Asegúrate de que modulesRoutes() devuelve un Router
+        this.router.use(modulesRoutes());
 
         // ========== YOU CAN SEE THE LAST REPORT ON http://localhost:<port>/api/test_view =========== //
         this.router.get('/test_view', function (req, res) {
