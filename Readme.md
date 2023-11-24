@@ -152,7 +152,7 @@ Se pueden importar los archivos JSON de Newman en Postman para realizar pruebas 
 
 ### BASIC ARCHITECTURE
 
-![Alt text](/public/image.png)
+![Alt text](/public/image-6.png)
 ![Alt text](/public/image-3.png)
 ![Alt text](/public/image-1.png)
 ![Alt text](/public/image-4.png)
