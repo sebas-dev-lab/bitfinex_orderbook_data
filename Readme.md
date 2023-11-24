@@ -167,3 +167,11 @@ Se pueden importar los archivos JSON de Newman en Postman para realizar pruebas 
 
 ![Alt text](/public/image-10.png)
 ![Alt text](/public/image-11.png)
+
+### Testing postman
+
+![Alt text](/public/image-12.png)
+![Alt text](/public/image-13.png)
+![Alt text](/public/image-14.png)
+![Alt text](/public/image-15.png)
+![Alt text](/public/image-16.png)
