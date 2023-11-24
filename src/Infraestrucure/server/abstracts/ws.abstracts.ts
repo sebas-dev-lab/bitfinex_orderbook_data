@@ -7,10 +7,11 @@ import ClientConnection from '../../../core/clientConnection/clientConnection.cl
 import SubscribeUsecases from '../../../modules/data_module/useCases/subscribe.usecases';
 import { Redis } from 'ioredis';
 import { RedisConnection } from '../../decorators/redis_conn.decorators';
+import { redisEnvs } from '../envs/envs';
 
 @RedisConnection({
-    port: 6379,
-    host: '127.0.0.1'
+    port: redisEnvs.redis_port,
+    host: redisEnvs.redis_host,
 })
 export class WsConnectionAbstract implements WsConnectionInterface {
     private redisClient!: Redis;

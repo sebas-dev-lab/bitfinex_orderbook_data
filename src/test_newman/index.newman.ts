@@ -6,10 +6,10 @@ import sleepTimeOut from '../common/statics/sleepTimeOut.statics';
 import StatusServerConfig from '../common/configs/status.config';
 
 export default async function runTest() {
-    // Esperar 10 segundos
+    // Wait 10 seconds before starting
     await sleepTimeOut(10000);
 
-    // Configuración para ejecutar el test
+    // Test Configurations
     const newmanOptions = {
         collection: require('./test_case_postman.json'),
         reporters: ['cli', 'htmlextra'],
@@ -26,7 +26,7 @@ export default async function runTest() {
     const health = StatusServerConfig.getInstance();
     health.setStatus('Ok');
 
-    // Llamar a newman.run como una función
+    // Run newman
     newman.run(newmanOptions, function (err) {
         if (err) {
             Logger.error('Error in collection run: ', err);

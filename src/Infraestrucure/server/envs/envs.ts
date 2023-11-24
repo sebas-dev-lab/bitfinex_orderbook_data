@@ -7,16 +7,19 @@ export const connEnvs = {
     server_port: process.env.PORT
 };
 
-export const useCases = {
-    // ============ use cases envs =========== //
-    market_ws: process.env.MARKET_BITFINEX_WS,
-    market_http: process.env.MARKET_BITFINEX_HTTP,
-    market_http_mk_avg_price: process.env.MARKET_BITFINEX_HTTP_MK_AVG_PRICE
+export const authEnvs = {
+    // ============ auth envs =========== //
+    auth_secret: process.env.AUTH_SECRET ? String(process.env.AUTH_SECRET) : 'secret'
 };
 
-export const authCase = {
-    // ============ auth cases envs =========== //
-    auth_username: process.env.AUTH_USERNAME,
-    auth_password: process.env.AUTH_PASSWORD,
-    auth_secret: process.env.AUTH_SECRET ? String(process.env.AUTH_SECRET) : 'secret'
+export const redisEnvs = {
+    // ============ redis envs =========== //
+    redis_port: process.env.REDIS_PORT ? Number(process.env.REDIS_PORT) : 6378,
+    redis_host: process.env.REDIS_HOST,
+};
+
+export const bitfinexEnvs = {
+    // ============ redis envs =========== //
+    btfx_ws: process.env.MARKET_BITFINEX_WS,
+    btfx_ep: process.env.MARKET_BITFINEX_HTTP,
 };

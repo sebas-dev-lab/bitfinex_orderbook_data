@@ -5,10 +5,11 @@ import { RedisConnection } from '../../../Infraestrucure/decorators/redis_conn.d
 import Subscriptions from '../../../core/subscriptions/subscriptions.class';
 import { EventEmitter } from 'events';
 import MainGateway from '../gateway/main.gateway';
+import { redisEnvs } from '../../../Infraestrucure/server/envs/envs';
 
 @RedisConnection({
-    port: 6379,
-    host: '127.0.0.1'
+    port: redisEnvs.redis_port,
+    host: redisEnvs.redis_host,
 })
 export default class SubscribeUsecases {
     private redisClient!: Redis;

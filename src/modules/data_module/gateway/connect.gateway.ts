@@ -6,6 +6,7 @@ import Redis from 'ioredis'; // Cambia aquí para importar Redis como un módulo
 import { RedisConnection } from '../../../Infraestrucure/decorators/redis_conn.decorators';
 import { WebSocketConnection } from '../../../Infraestrucure/decorators/websocket_conn.decorators';
 import Logger from '../../../common/configs/winston.logs';
+import { bitfinexEnvs, redisEnvs } from '../../../Infraestrucure/server/envs/envs';
 
 export interface Order {
   price: number
@@ -14,10 +15,10 @@ export interface Order {
 }
 
 @RedisConnection({
-    port: 6379,
-    host: '127.0.0.1'
+    port: redisEnvs.redis_port,
+    host: redisEnvs.redis_host,
 })
-@WebSocketConnection('wss://api.bitfinex.com/ws/2')
+@WebSocketConnection(bitfinexEnvs.btfx_ws)
 export default class OrderBookService {
     private ws!: WebSocket;
     private redisClient!: Redis;
@@ -44,7 +45,7 @@ export default class OrderBookService {
             if (dt && !dt.event) {
                 await this.handleMessage(JSON.parse(data.toString()));
             } else if (dt && dt.event && dt.event === 'error') {
-                Logger.error(`>>>>>>>>>>> INVALID PAIR: ${dt.event}; ${dt.pair}`);
+                Logger.error(`INVALID PAIR: ${dt.event}; ${dt.pair}`);
                 this.handleMessageError(dt);
             }
         });
@@ -321,23 +322,3 @@ export default class OrderBookService {
         }
     }
 }
-
-/*
-// Ejemplo de uso
-const orderBookService = new OrderBookService('BTCUSD');
-
-// Obtener los tips del orderbook
-orderBookService.getOrderBookTips().then((tips) => {
-    console.log(`Best Bid: ${JSON.stringify(tips.bid)}`);
-    console.log(`Best Ask: ${JSON.stringify(tips.ask)}`);
-});
-
-// Obtener el precio efectivo para una operación específica y cantidad
-orderBookService.getEffectivePrice('buy', 1).then((price) => {
-    console.log(`Effective Price for Buy: ${price}`);
-});
-
-orderBookService.getEffectivePrice('sell', 1).then((price) => {
-    console.log(`Effective Price for Sell: ${price}`);
-});
-*/

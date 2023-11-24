@@ -5,7 +5,6 @@ import * as WebSocket from 'ws';
 import { MainConnectionInterface } from '../interfaces/connectiosn.interface';
 import Logger from '../../../common/configs/winston.logs';
 import cleanConsole from '../helpers/cleanConsole.helpers';
-import sleepTimeOut from '../../../common/statics/sleepTimeOut.statics';
 import StatusServerConfig from '../../../common/configs/status.config';
 
 export abstract class MainConnectionAbstract implements MainConnectionInterface {
