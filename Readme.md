@@ -1,5 +1,3 @@
-## CHALLENGE RATHERLABS
-
 ### Tecnología
 
 - NodeJs
